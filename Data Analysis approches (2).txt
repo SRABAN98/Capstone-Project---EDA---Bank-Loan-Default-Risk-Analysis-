@@ -1,0 +1,158 @@
+Business Objective - 
+
+- This case study aims to identify defaulters, which indicate if a client has difficulty paying their installments which may be used for taking actions such as denying the loan, reducing the amount of loan, lending (to risky applicants).
+- As we need to predict weather defaulter or not. that is this problem statement comes under classification problem. 
+- As per the use case 5% defaulters and 95% are non-defaulters that means this kind of dataset is highly imbalaced dataset.
+
+A - Below approches need to follow for Data preprocessing & Data cleaing steps :-
+-----------------------------------------------------------------------------------
+1> Importing all the requeired libraries.
+2> Importing dataset.
+3> Read the dataframe and try to understand the length, columns , datatypes, we should understand and we have to check any missing values are availabe or not.
+4> Data cleaning steps,
+	- we will check about missing values & we will check how much % of missing values.
+	- if numerical data is missing then we have to apply mean strategy.
+	- if categorical value is missing then use dummy variable to replace and convert with numerical value.
+5> Analyze and delete unnecesary columns.
+6> Feature engineering is required to do that means try to find out the corelation between variables using heatmap visualization. 
+7> Data type conversion (all the object datatype will covert from object data type to int,float or string datatype based on the requirment.
+
+B - EDA (EXPLARATORY DATA ANALYSIS) :-
+----------------------------------------
+1> We will plot numerical varible missing data & categorical variable missing data.
+2> Try to find the outlier detection and we can find some insight. 
+3> As the dataset is imbalance in Data so we have to do below visualization for understanding the data,
+- Categorical Data Analysis
+	- Categorical segmented Univariate Analysis.
+	- Categorical Bi/Multivariate analysis.
+- Numeric Data Analysis -
+	- Correlation Matrix.
+	- Numerical segmented Univariate Analysis.
+	- Numerical Bi/Multivariate analysis.
+
+After analysing the datasets,we may get few attributes of a client with which the bank would be able to identify if they will repay the loan or not. The analysis is consised as below with the contributing factors and categorization based on my assumption - 
+
+C - Below factor which I think customer will be defaulter :-
+---------------------------------------------------------
+1- GENDER: Men are at relatively higher default rate
+2- FAMILY_STATUS : People who have civil marriage or who are single default a lot.
+3- EDUCATION_TYPE: People with Lower Secondary & Secondary education
+4- INCOME_TYPE: Clients who are either at Maternity leave OR Unemployed default a lot.
+5- RATING_CLIENT: People who live in Rating 3 has highest defaults.
+6- OCCUPATION_TYPE: Avoid Low-skill Laborers, Drivers and Waiters/barmen staff, Security staff, Laborers and 
+7- ORGANIZATION_TYPE: Organizations with highest percent of loans not repaid are Transport: type 3 (16%), Industry: 
+8- DAYS_BIRTH: Avoid young people who are in age group of 20-40 as they have higher probability of defaulting
+9- DAYS_EMPLOYED: People who have less than 5 years of employment have high default rate.
+10- CNT_CHILDREN & CNT_FAM_MEMBERS: Client who have children equal to or more than 9 default 100% and hence their 11- applications are to be rejected.
+12- GOODS_PRICE: When the credit amount goes beyond 3M, there is an increase in defaulters.
+13- Most of the applicants do not have children
+14- Very few clients have more than 3 children.
+15- Client who have more than 4 children has a very high default rate with child count 9 and 11 showing 100%     default rate
+
+D - Below factor which i think customer will be repayer :-
+------------------------------------------------------
+1- EDUCATION: Academic degree has less defaults.
+2. INCOME: Student and Businessmen have no defaults.
+3. RATING_CLIENT: RATING 1 is safer.
+4. ORGANIZATION_TYPE: Clients with Trade Type 4 and 5 and Industry type 8 have defaulted less than 3%
+5. DAYS_BIRTH: People above age of 50 have low probability of defaulting
+6. DAYS_EMPLOYED: Clients with 40+ year experience having less than 1% default rate
+7. AMT_INCOME_TOTAL:Applicant with Income more than 700,000 are less likely to default
+8. NAME_CASH_LOAN_PURPOSE: Loans bought for Hobby, Buying garage are being repayed mostly.
+9. CHILDREN: People with zero to two children tend to repay the loans.
+
+E - Split the dataset into (training phase and testing phase)
+---------------------
+
+x- independendt variable 
+Y- Dependent variable ( weather the customer is default or not)
+
+As the dependendt variable is bi-nary in nature then we will use classification algorithm to build the model
+
+F - To handle the outlier, numerical columns & categorical columns - 
+--------------------------------------------------------------------
+- we can find out the outlier using different plotting technique called - box plot & this box plot show which
+  attribute has outlier or which attribute has no outlier
+- for categorical columns we can do univariate, bivariate analysis & try to find the corelation between 2 feature
+- for numerical columns also we can plot and lot of hidden information will get it & below is the example -
+  	1-people in the age group range 20-40 have higher probability of defaulting
+	2-People above age of 50 have low probability of defailting
+	3-Majority of the applicants have been employeed in between 0-5 years. The defaulting rating of this group is also the highest which is 10%
+	4- More than 80% of the loan provided are for amount less than 900,000. People who get loan for 300-600k tend to default more than others.
+	5- 90% of the applications have Income total less than 300,000
+	6- Application with Income less than 300,000 has high probability of defaulting
+	7- Applicant with Income more than 700,000 are less likely to default
+
+G - Do you want to include the entire 1000 features -
+---------------------------------------------------
+- No we can not inculde the entire 1000 feature , we will consider only relevant feature. 
+
+H- What model do you want to choose and why?
+---------------------------------------------------
+- As problem statement is binary in nature i will use classification algorithm to build the model
+- Few classifcation models are - logistic regression // svm // Decision tree/ Random forest
+- I will choose all the classification model  
+
+I - What is your validation strategy? :-
+-------------------------------------------------
+- we have many valiation technique but most of them are using K-Fold cross validation
+- Cross-validation is a statistical method used to estimate the skill of machine learning models.
+- We have many valiation technique but most of them are using K-Fold cross validation
+
+J- How are you going to handle class imbalance-
+-------------------------------------------------
+- As the dataset is imbalance we should use SMOT(Synthetic Minority Oversampling Technique)
+- SMOT technique - resample and undersample the data
+- Undersampling:- it means taking the less number of majority class (In our case taking less number of Normal  - transactions so that our new data will be balanced
+
+Oversampling: it means using replicating the data of minority class (fraud class) so that we can have a balanced data
+
+SMOTE: it is also a type of oversampling but in this we will make the synthetic example of Minority data and will give as a balanced data
+
+First I will start with the Undersampling and will try to classify using these Models
+
+* Decision Tree Classifier
+* Random Forest Classifier
+* Logistic regression 
+
+
+K- How are you going to choose the best model:-
+------------------------------------------------
+- Based on the confusion matrix we will find the accuracy 
+- We will get all the model accuracy & compare accuracy 
+----------------------------------------------
+
+Sir, 
+
+- I would request you to please provide the complete dataset for complete indepth analysis
+
+Best regards,
+Srabana
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
